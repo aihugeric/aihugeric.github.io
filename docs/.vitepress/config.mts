@@ -48,7 +48,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '拥抱AI，智享未来',
+      message: '哈格相伴，智享未来 👉 www.aihug.cn 👈',
       copyright: `Copyright © ${new Date().getFullYear()} 哈格AI · Powered by VitePress`
     },
 
