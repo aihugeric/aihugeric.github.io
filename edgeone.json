@@ -1,3 +1,7 @@
 {
+  "buildCommand": "npx vitepress build docs",
+  "installCommand": "npm install",
+  "outputDirectory": "docs/.vitepress/dist",
+  "nodeVersion": "22.11.0",
   "devCommand": "npm run dev"
 }
