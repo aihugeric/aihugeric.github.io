@@ -1,0 +1,21 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "个人博客 - 技术 & 诗词 | 自动同步微信公众号",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "sync:wechat": "node scripts/sync-wechat.js"
+  },
+  "devDependencies": {
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.0",
+    "front-matter": "^4.0.2",
+    "gray-matter": "^4.0.3"
+  }
+}

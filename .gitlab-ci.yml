@@ -1,0 +1,88 @@
+# ============================================
+# 个人博客 - GitLab CI/CD 流水线
+# 
+# 功能：
+# 1. 构建 VitePress 静态站点
+# 2. 部署到 GitLab Pages
+# 3. 检测新增文章，自动同步到微信公众号草稿箱
+# ============================================
+
+stages:
+  - build
+  - deploy
+  - sync-wechat
+
+variables:
+  NODE_VERSION: "22"
+
+# 安装依赖缓存
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - node_modules/
+
+# ============================================
+# Build: 构建静态站点
+# ============================================
+build:
+  stage: build
+  image: node:${NODE_VERSION}
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - docs/.vitepress/dist/
+    expire_in: 1 hour
+  only:
+    - main
+    - master
+
+# ============================================
+# Pages: 部署到 GitLab Pages
+# ============================================
+pages:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - mkdir -p public
+    - cp -r docs/.vitepress/dist/* public/
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - master
+  needs:
+    - build
+
+# ============================================
+# Sync WeChat: 同步到微信公众号
+# 检测本次提交新增的 Markdown 文章，自动同步到微信草稿箱
+# 
+# 前置条件：
+#   在 GitLab 项目 Settings → CI/CD → Variables 中配置：
+#   - WECHAT_APPID: 微信公众号 AppID
+#   - WECHAT_APPSECRET: 微信公众号 AppSecret
+#   - WECHAT_SYNC_ENABLED: 设为 "true" 启用同步
+# ============================================
+sync-wechat:
+  stage: sync-wechat
+  image: node:${NODE_VERSION}
+  script:
+    - npm ci
+    - node scripts/sync-wechat.js
+  only:
+    - main
+    - master
+  needs:
+    - build
+  variables:
+    GIT_DEPTH: 2  # 只需要最近两次提交来检测变更
+  rules:
+    # 仅在配置了微信同步且检测到文章变更时运行
+    - if: '$WECHAT_SYNC_ENABLED == "true" && $WECHAT_APPID && $WECHAT_APPSECRET'
+      when: on_success
+    - when: never
