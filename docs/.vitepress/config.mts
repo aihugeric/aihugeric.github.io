@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '哈格AI',
-  description: '哈格AI — 拥抱人工智能，书写诗意人生',
+  description: '一半山川湖海，一半代码长歌。',
   base: '/',
   srcDir: '../content',
   
