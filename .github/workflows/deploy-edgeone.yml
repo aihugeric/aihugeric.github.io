@@ -1,23 +1,22 @@
-name: Deploy to EdgeOne Pages
+name: Deploy to EdgeOne Pages (CLI fallback)
 
-# 部署到腾讯云 EdgeOne Pages
-# ⚠️ 加速区域在项目创建时选定，创建后不可修改！
-#    首次部署前，请先在 EdgeOne 控制台手动创建项目并选择加速区域：
-#    新建项目 → 加速区域 → 选择「全球可用区（不含中国大陆）」→ 免备案绑定自定义域名
-#    项目名必须为 aihugeric-blog（与下方 -n 参数一致）
+# ⚠️ 主要部署方式已改为 EdgeOne Git 集成（控制台自动构建）
+#    此工作流仅作为备用，手动触发时通过 CLI 上传构建产物
+#
+# EdgeOne Git 集成配置（控制台）：
+#   根目录: ./
+#   安装命令: npm install
+#   构建命令: npx vitepress build docs
+#   输出目录: docs/.vitepress/dist
+#
+# 加速区域在项目创建时选定，创建后不可修改
+# 如需免备案绑定自定义域名，请确保选了「全球可用区（不含中国大陆）」
 
 on:
-  push:
-    branches: [main]
-
   workflow_dispatch:
 
 permissions:
   contents: read
-
-concurrency:
-  group: edgeone-deploy
-  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
@@ -55,4 +54,3 @@ jobs:
           echo "✅ 部署完成！"
           echo "📍 默认访问地址: https://aihugeric-blog-hyqltofp.edgeone.cool"
           echo "🔧 自定义域名绑定: EdgeOne 控制台 → 域名管理 → 添加自定义域名"
-          echo "⚠️  加速区域在项目创建时选定，不可修改，请确保选了「不含中国大陆」"
