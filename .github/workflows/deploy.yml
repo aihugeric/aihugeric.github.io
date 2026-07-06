@@ -1,9 +1,6 @@
-name: Deploy VitePress to GitHub Pages
+name: Deploy to GitHub Pages (fallback)
 
 on:
-  push:
-    branches: [main]
-
   workflow_dispatch:
 
 permissions:

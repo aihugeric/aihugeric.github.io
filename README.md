@@ -1,10 +1,10 @@
-# 哈格AI — aihug.cn
+# 哈格AI — 个人博客
 
 > 哈格相伴，智享未来 — 拥抱人工智能，书写诗意人生
 
-基于 **VitePress** 构建的个人博客，托管于 **GitLab Pages**，支持自动同步到**微信公众号**。
+基于 **VitePress** 构建的个人博客，部署于 **腾讯云 EdgeOne Pages**，支持自动同步到**微信公众号**。
 
-**域名**: [aihug.cn](https://aihug.cn)
+**线上地址**: EdgeOne Pages 部署后自动分配
 
 ## 📁 项目结构
 
@@ -52,13 +52,50 @@ npm run build
 npm run preview
 ```
 
-### 部署到 GitLab
+### 部署到 EdgeOne Pages（主要）
 
-1. 将项目推送到 GitLab 仓库
-2. GitLab CI/CD 会自动构建并部署到 GitLab Pages
-3. 访问 `https://<username>.gitlab.io/<repo-name>`
+项目通过 GitHub Actions 自动构建并部署到腾讯云 EdgeOne Pages。
 
-需要在 GitLab 项目 **Settings → CI/CD → Variables** 中配置环境变量（见下文）。
+#### 方式一：GitHub Actions + EdgeOne CLI（已配置）
+
+工作流文件：`.github/workflows/deploy-edgeone.yml`
+
+每次推送到 `main` 分支时自动触发，流程：
+1. 安装依赖 → 构建 VitePress → 安装 EdgeOne CLI → 部署
+
+**前置配置**：
+
+1. 在 [EdgeOne Makers 控制台](https://console.cloud.tencent.com/edgeone/pages) 创建项目（或让 CLI 首次部署时自动创建）
+2. 在控制台生成 **API Token**（Settings → API Tokens）
+3. 在 GitHub 仓库 **Settings → Secrets and variables → Actions** 添加：
+   - `EDGEONE_API_TOKEN`：上一步生成的 API Token
+
+配置完成后，每次 `git push origin main` 即自动部署。
+
+#### 方式二：EdgeOne 控制台 Git 集成（备选）
+
+1. 在 EdgeOne Makers 控制台选择「导入 Git 仓库」
+2. 授权并选择 `aihugeric/aihugeric.github.io` 仓库
+3. 构建配置：
+
+| 配置项 | 值 |
+|--------|-----|
+| 根目录 | `./` |
+| 安装命令 | `npm install` |
+| 构建命令 | `npx vitepress build docs` |
+| 输出目录 | `docs/.vitepress/dist` |
+
+4. 点击「开始部署」，后续 push 自动触发重建
+
+### 部署到 GitHub Pages（备用）
+
+工作流文件：`.github/workflows/deploy.yml`（已改为手动触发）
+
+需在 GitHub Settings → Pages → Source 选择 "GitHub Actions"，然后在 Actions 页面手动 Run workflow。
+
+### 部署到 GitLab Pages（备选）
+
+使用 `.gitlab-ci.yml` 配置，推送到 GitLab 后自动构建部署。
 
 ## 🔗 微信公众号打通
 

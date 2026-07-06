@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   lang: 'zh-CN',
   title: '哈格AI',
-  description: '哈格AI — 拥抱人工智能，书写诗意人生 | aihug.cn',
+  description: '哈格AI — 拥抱人工智能，书写诗意人生',
   base: '/',
   srcDir: '../content',
   
@@ -48,7 +48,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '拥抱AI，智享未来 · aihug.cn',
+      message: '拥抱AI，智享未来',
       copyright: `Copyright © ${new Date().getFullYear()} 哈格AI · Powered by VitePress`
     },
 
