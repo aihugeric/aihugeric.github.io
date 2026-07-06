@@ -1,9 +1,10 @@
 name: Deploy to EdgeOne Pages
 
 # 部署到腾讯云 EdgeOne Pages
-# ⚠️ 加速区域需在 EdgeOne 控制台配置（不支持 CLI 指定）：
-#    项目设置 → 加速区域 → 选择「全球可用区（不含中国大陆）」
-#    这样绑定自定义域名时无需 ICP 备案
+# ⚠️ 加速区域在项目创建时选定，创建后不可修改！
+#    首次部署前，请先在 EdgeOne 控制台手动创建项目并选择加速区域：
+#    新建项目 → 加速区域 → 选择「全球可用区（不含中国大陆）」→ 免备案绑定自定义域名
+#    项目名必须为 aihugeric-blog（与下方 -n 参数一致）
 
 on:
   push:
@@ -54,4 +55,4 @@ jobs:
           echo "✅ 部署完成！"
           echo "📍 默认访问地址: https://aihugeric-blog-hyqltofp.edgeone.cool"
           echo "🔧 自定义域名绑定: EdgeOne 控制台 → 域名管理 → 添加自定义域名"
-          echo "⚠️  加速区域请选择「不含中国大陆」以避免备案要求"
+          echo "⚠️  加速区域在项目创建时选定，不可修改，请确保选了「不含中国大陆」"
