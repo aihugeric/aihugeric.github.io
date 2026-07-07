@@ -1,6 +1,9 @@
 name: Deploy to GitHub Pages (fallback)
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -15,6 +18,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 仅在提交信息包含"部署"时触发
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '部署')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
