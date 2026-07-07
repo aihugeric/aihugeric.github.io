@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2020/10/01/%E8%A5%BF%E5%8C%97%E6%9C%9B/
 
 # 西北望
 
+<div class="poem-date">
+
+2020年10月1日
+
+</div>
+
 <div class="poem-content">
 
 昨夜幽梦忽还乡，故园山川萦脑间。<br/>

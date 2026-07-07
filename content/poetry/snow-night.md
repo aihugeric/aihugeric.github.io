@@ -10,6 +10,12 @@ source: https://mp.weixin.qq.com/s/XgFIGPpMldqP6aQm7kUzsA
 
 # 雪夜偶感
 
+<div class="poem-date">
+
+2024年1月22日
+
+</div>
+
 <div class="poem-content">
 
 芙蓉国里一支烟，已是潇湘腊月天。<br/>

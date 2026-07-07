@@ -9,6 +9,12 @@ excerpt: 妻儿同载赴乡关，千里归程一日还。舅家宰羊意拳拳�
 
 # 瑞雪知春
 
+<div class="poem-date">
+
+2026年2月15日
+
+</div>
+
 <div class="poem-content">
 
 妻儿同载赴乡关，千里归程一日还。<br/>

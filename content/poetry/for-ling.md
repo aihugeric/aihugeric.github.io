@@ -9,6 +9,12 @@ excerpt: 二八芳龄初识君，数载同窗圣贤书。奔星汉音讯渐少�
 
 # 思玲君
 
+<div class="poem-date">
+
+2019年5月20日
+
+</div>
+
 <div class="poem-note">
 
 己亥年五月于芝加哥密歇根湖畔有感而发

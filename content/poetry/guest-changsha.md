@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2022/01/25/%E5%AE%A2%E9%95%BF%E6%B2%99/
 
 # 客长沙
 
+<div class="poem-date">
+
+2022年1月25日
+
+</div>
+
 <div class="poem-content">
 
 阳关驼铃千里外，戈壁胡杨戍边塞。<br/>

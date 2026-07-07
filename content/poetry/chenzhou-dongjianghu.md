@@ -9,6 +9,12 @@ excerpt: 清风不把游人负，拂尽炎热不惹雾。莫问前路愁几许�
 
 # 郴州小记 · 东江湖
 
+<div class="poem-date">
+
+2022年6月10日
+
+</div>
+
 <div class="poem-content">
 
 清风不把游人负，拂尽炎热不惹雾。<br/>

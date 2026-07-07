@@ -9,6 +9,12 @@ excerpt: 去岁携妻女，庞府庆欢年。归宁多喜乐，宴饮不曾闲�
 
 # 于腊月廿三日抒怀
 
+<div class="poem-date">
+
+2023年1月15日
+
+</div>
+
 <div class="poem-content">
 
 去岁携妻女，庞府庆欢年。<br/>

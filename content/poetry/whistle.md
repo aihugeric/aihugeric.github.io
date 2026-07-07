@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2020/01/23/%E9%B8%A3%E5%93%A8/
 
 # 鸣哨
 
+<div class="poem-date">
+
+2020年1月23日
+
+</div>
+
 <div class="poem-content">
 
 隔窗竹雨黄金叶，烟雨朦胧又一春。<br/>

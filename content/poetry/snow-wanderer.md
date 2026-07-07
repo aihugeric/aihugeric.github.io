@@ -9,6 +9,12 @@ excerpt: 风送驼铃羌笛缓，将军立马望乡关。鸣沙山雪卸金甲�
 
 # 雪落游子归
 
+<div class="poem-date">
+
+2025年12月12日
+
+</div>
+
 <div class="poem-content">
 
 风送驼铃羌笛缓，将军立马望乡关。<br/>

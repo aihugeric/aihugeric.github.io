@@ -249,6 +249,16 @@
   font-size: 2rem;
 }
 
+.poem-date {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-3);
+  margin-top: -12px;
+  margin-bottom: 24px;
+  font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
+  letter-spacing: 0.05em;
+}
+
 .poem-content {
   text-align: center;
   line-height: 2.4;
@@ -332,5 +342,44 @@
 
   .module-card {
     padding: 28px 24px;
+  }
+
+  /* 诗词文章移动端适配 */
+  .page-poetry .vp-doc h1 {
+    font-size: 1.5rem;
+  }
+
+  .poem-date {
+    font-size: 0.8rem;
+    margin-top: -8px;
+    margin-bottom: 16px;
+  }
+
+  .poem-content {
+    font-size: 0.95rem;
+    line-height: 2.2;
+    padding: 20px 12px;
+    margin: 20px 0;
+    /* 防止诗句在移动端换行溢出 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .poem-note {
+    font-size: 0.8rem;
+    margin-top: 16px;
+  }
+}
+
+/* 超窄屏幕（≤375px）进一步缩小 */
+@media (max-width: 375px) {
+  .poem-content {
+    font-size: 0.88rem;
+    padding: 16px 8px;
+    line-height: 2;
+  }
+
+  .page-poetry .vp-doc h1 {
+    font-size: 1.35rem;
   }
 }

@@ -9,6 +9,12 @@ excerpt: 故人携乡情，欲来喜无眠。湘聚方二日，又别赴前程�
 
 # 朋自远方来
 
+<div class="poem-date">
+
+2017年5月12日
+
+</div>
+
 <div class="poem-content">
 
 故人携乡情，欲来喜无眠。<br/>

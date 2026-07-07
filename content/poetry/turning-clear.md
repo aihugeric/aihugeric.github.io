@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2020/02/22/%E8%BD%AC%E6%99%B4/
 
 # 转晴
 
+<div class="poem-date">
+
+2020年2月22日
+
+</div>
+
 <div class="poem-content">
 
 愁云疑雨封城日，华夏九州疫锁地。<br/>

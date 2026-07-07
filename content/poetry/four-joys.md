@@ -9,6 +9,12 @@ excerpt: 扫尘送灶辞旧岁，轻装策马赴春闲。锡婚恰逢生辰日�
 
 # 四喜同辰
 
+<div class="poem-date">
+
+2026年2月10日
+
+</div>
+
 <div class="poem-content">
 
 扫尘送灶辞旧岁，轻装策马赴春闲。<br/>

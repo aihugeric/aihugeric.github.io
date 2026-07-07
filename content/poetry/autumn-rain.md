@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2021/10/12/%E7%A7%8B%E9%9B%A8%E5%88%9D%E5%87%89/
 
 # 秋雨初凉
 
+<div class="poem-date">
+
+2021年10月12日
+
+</div>
+
 <div class="poem-content">
 
 惊雷扰清梦，天公送凉秋。<br/>

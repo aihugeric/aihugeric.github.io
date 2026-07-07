@@ -10,6 +10,12 @@ source: https://aihug.cn/blog/2021/09/20/%E8%A1%A1%E5%B1%B1%E5%B0%8F%E8%AE%B0/
 
 # 衡山小记
 
+<div class="poem-date">
+
+2021年9月20日
+
+</div>
+
 <div class="poem-content">
 
 **其一**

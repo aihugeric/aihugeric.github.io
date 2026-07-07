@@ -9,6 +9,12 @@ excerpt: 闻师游学至长沙，湘水波光映彩霞。十余载春秋虽过�
 
 # 迎故人
 
+<div class="poem-date">
+
+2025年6月13日
+
+</div>
+
 <div class="poem-content">
 
 闻师游学至长沙，湘水波光映彩霞。<br/>

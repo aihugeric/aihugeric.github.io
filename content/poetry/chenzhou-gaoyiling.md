@@ -9,6 +9,12 @@ excerpt: 舟车四百里，骄阳登高椅。未览东江雾，湖鱼已入腹�
 
 # 郴州小记 · 高椅岭
 
+<div class="poem-date">
+
+2022年6月10日
+
+</div>
+
 <div class="poem-content">
 
 舟车四百里，骄阳登高椅。<br/>
