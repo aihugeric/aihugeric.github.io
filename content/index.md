@@ -9,8 +9,7 @@ import { data as posts } from './posts.data'
 <div class="hero-section">
   <h1>哈格AI</h1>
   <p class="subtitle">
-    AIHUG — 拥抱人工智能，书写诗意人生<br/>
-    哈格相伴，智享未来
+    一半山川湖海，一半代码长歌。
   </p>
 </div>
 
