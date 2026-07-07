@@ -8,14 +8,14 @@ export default defineConfig({
   srcDir: '../content',
   
   head: [
-    ['link', { rel: 'icon', href: '/logo.png' }],
+    ['link', { rel: 'icon', href: '/logo.svg' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'zh_CN' }],
   ],
 
   themeConfig: {
-    logo: '/logo.png',
+    logo: '/logo.svg',
     
     nav: [
       { text: '首页', link: '/' },
