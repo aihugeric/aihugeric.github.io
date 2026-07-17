@@ -2,8 +2,8 @@
 title: 3岁宝贝的120个睡前故事
 date: 2026-07-13
 author: ericxi
-category: story
-tags: [story]
+category: others
+tags: [故事]
 excerpt: 每个故事都围绕一个成长主题，帮助小朋友在温暖的故事中学会生活中的小道理。
 ---
 

@@ -9,19 +9,25 @@
 ## 📁 项目结构
 
 ```
-personal-blog/
-├── .gitlab-ci.yml              # GitLab CI/CD 流水线
+aihugeric.github.io/
+├── .github/workflows/
+│   ├── deploy-edgeone.yml      # EdgeOne Pages 部署（CLI 备用，手动触发）
+│   └── deploy.yml              # GitHub Pages 部署（备用，commit 含"部署"时触发）
+├── .gitlab-ci.yml              # GitLab CI/CD 流水线（历史遗留）
+├── edgeone.json                # EdgeOne Git 集成构建配置
 ├── package.json
 ├── README.md
-├── docs/                       # VitePress 文档根目录
+├── docs/                       # VitePress 站点根目录（构建入口）
 │   ├── .vitepress/
-│   │   ├── config.mts          # 站点配置
+│   │   ├── config.mts          # 站点配置（srcDir 指向 ../content）
 │   │   └── theme/              # 自定义主题
 │   │       ├── index.ts        # 主题入口
-│   │       ├── Layout.vue      # 自定义布局
-│   │       └── style.css       # 样式表
-│   ├── public/
-│   │   └── logo.svg            # 站点 Logo
+│   │       ├── Layout.vue       # 自定义布局
+│   │       └── style.css        # 样式表
+│   └── public/
+│       └── logo_rm.png          # 站点 Logo
+├── content/                    # 文章源码目录（srcDir）
+│   ├── posts.data.ts           # 文章数据加载器（createContentLoader）
 │   ├── index.md                # 首页
 │   ├── archive.md              # 文章归档
 │   ├── tech/                   # 技术文章
@@ -30,9 +36,14 @@ personal-blog/
 │   └── poetry/                 # 诗词作品
 │       ├── index.md            # 作品列表
 │       └── *.md                # 诗词作品
+│   └── others/                 # 其他作品（故事、随笔等）
+│       ├── index.md            # 作品列表
+│       └── *.md                # 其他分类作品
 └── scripts/
     └── sync-wechat.js          # 微信公众号同步脚本
 ```
+
+> 说明：`docs/` 是 VitePress 的构建根目录（`vitepress build docs`），真正的文章内容放在 `content/`（`srcDir: '../content'`）。部署产物输出到 `docs/.vitepress/dist`。
 
 ## 🚀 快速开始
 
@@ -54,59 +65,50 @@ npm run preview
 
 ### 部署到 EdgeOne Pages（主要）
 
-项目通过 GitHub Actions 自动构建并部署到腾讯云 EdgeOne Pages。
-
-#### 方式一：GitHub Actions + EdgeOne CLI（已配置）
-
-工作流文件：`.github/workflows/deploy-edgeone.yml`
-
-每次推送到 `main` 分支时自动触发，流程：
-1. 安装依赖 → 构建 VitePress → 安装 EdgeOne CLI → 部署
-
-**前置配置**：
-
-1. 在 [EdgeOne Makers 控制台](https://console.cloud.tencent.com/edgeone/pages) 创建项目（或让 CLI 首次部署时自动创建）
-2. 在控制台生成 **API Token**（Settings → API Tokens）
-3. 在 GitHub 仓库 **Settings → Secrets and variables → Actions** 添加：
-   - `EDGEONE_API_TOKEN`：上一步生成的 API Token
-
-配置完成后，每次 `git push origin main` 即自动部署。
-
-#### 方式二：EdgeOne 控制台 Git 集成（备选）
-
-1. 在 EdgeOne Makers 控制台选择「导入 Git 仓库」
-2. 授权并选择 `aihugeric/aihugeric.github.io` 仓库
-3. 构建配置：
+项目部署到腾讯云 **EdgeOne Pages**，构建配置见仓库根目录 `edgeone.json`：
 
 | 配置项 | 值 |
 |--------|-----|
-| 根目录 | `./` |
 | 安装命令 | `npm install` |
 | 构建命令 | `npx vitepress build docs` |
 | 输出目录 | `docs/.vitepress/dist` |
+| Node 版本 | `22.11.0` |
 
-4. 点击「开始部署」，后续 push 自动触发重建
+#### 方式一：EdgeOne 控制台 Git 集成（主要，推荐）
+
+1. 在 [EdgeOne Makers 控制台](https://console.cloud.tencent.com/edgeone/pages) 选择「导入 Git 仓库」
+2. 授权并选择 `aihugeric/aihugeric.github.io` 仓库
+3. 按上表填写构建配置（也可直接读取 `edgeone.json`）
+4. 点击「开始部署」，后续 push 到 `main` 自动触发重建
+
+> 加速区域在项目创建时选定、创建后不可修改。如需**免备案**绑定自定义域名，请确保选了「全球可用区（不含中国大陆）」。
+
+#### 方式二：GitHub Actions + EdgeOne CLI（备用）
+
+工作流文件：`.github/workflows/deploy-edgeone.yml`（手动触发 `workflow_dispatch`）。
+
+**前置配置**：在 GitHub 仓库 **Settings → Secrets and variables → Actions** 添加 `EDGEONE_API_TOKEN`（EdgeOne 控制台 Settings → API Tokens 生成）。手动 Run workflow 后，流程为：安装依赖 → 构建 → 安装 EdgeOne CLI → `edgeone makers deploy` 上传 `docs/.vitepress/dist`。
 
 ### 部署到 GitHub Pages（备用）
 
-工作流文件：`.github/workflows/deploy.yml`（已改为手动触发）
+工作流文件：`.github/workflows/deploy.yml`。
 
-需在 GitHub Settings → Pages → Source 选择 "GitHub Actions"，然后在 Actions 页面手动 Run workflow。
+触发条件：在 Actions 页面手动 Run workflow，**或** 提交信息包含「部署」二字时自动触发。需在 GitHub Settings → Pages → Source 选择 "GitHub Actions"。
 
-### 部署到 GitLab Pages（备选）
+### 部署到 GitLab Pages（历史遗留）
 
-使用 `.gitlab-ci.yml` 配置，推送到 GitLab 后自动构建部署。
+`.gitlab-ci.yml` 为早期方案，当前主流程已迁移至 EdgeOne Pages，一般无需使用。
 
 ## 🔗 微信公众号打通
 
 ### 工作原理
 
 ```
-写文章(Markdown) → Git Push → GitLab CI 自动构建
+写文章(Markdown) → Git Push → 本地/CI 构建部署
                                     ↓
-                           部署到 GitLab Pages
+                          运行 node scripts/sync-wechat.js
                                     ↓
-                          sync-wechat Job 检测新增文章
+                         检测 content/tech、content/poetry 下新增/修改文章
                                     ↓
                        调用微信 API 创建图文草稿
                                     ↓
@@ -129,16 +131,17 @@ npm run preview
 
 > 提示：可以在 sync-wechat 的 CI Job 中运行 `curl ifconfig.me` 获取 Runner 出口 IP。
 
-#### 3. 配置 GitLab CI 变量
+#### 3. 配置运行环境变量
 
-在 GitLab 项目 **Settings → CI/CD → Variables** 中添加：
+在本地终端或 CI 环境变量中添加：
 
 | 变量名 | 值 | 说明 |
 |--------|-----|------|
 | `WECHAT_APPID` | `wx1234567890abcdef` | 公众号 AppID |
-| `WECHAT_APPSECRET` | `your_app_secret` | 公众号 AppSecret（**Masked**） |
-| `WECHAT_SYNC_ENABLED` | `true` | 启用微信同步 |
+| `WECHAT_APPSECRET` | `your_app_secret` | 公众号 AppSecret（**勿提交到仓库**） |
 | `BLOG_BASE_URL` | `https://blog.example.com` | （可选）博客访问地址，用于生成"阅读原文"链接 |
+
+> 同步脚本读取上述变量（见 `scripts/sync-wechat.js` 顶部），本地执行 `npm run sync:wechat` 即可；CI 中通过对应平台的 Secrets/Variables 注入。
 
 #### 4. 上传默认封面图（重要）
 
@@ -158,7 +161,7 @@ const DEFAULT_COVER_MEDIA_ID = 'your_permanent_media_id_here'
 
 脚本会自动检测 Git 提交中 **新增或修改** 的文章文件：
 
-- 仅同步 `docs/tech/*.md` 和 `docs/poetry/*.md` 下的文章
+- 仅同步 `content/tech/` 和 `content/poetry/` 下的文章（`CONTENT_DIRS` 配置，相对于 `docs/`）
 - 列表页（`index.md`）和归档页不会被同步
 - 只处理最近一次提交中的变更
 
@@ -173,7 +176,7 @@ const DEFAULT_COVER_MEDIA_ID = 'your_permanent_media_id_here'
 title: 文章标题
 date: 2026-07-06
 author: ericxi
-category: tech       # tech 或 poetry
+category: tech       # tech / poetry / others
 tags: [VitePress, 博客]
 excerpt: 文章摘要，会同步到微信公众号的摘要字段
 ---
@@ -186,21 +189,19 @@ excerpt: 文章摘要，会同步到微信公众号的摘要字段
 ### 发布流程
 
 ```bash
-# 1. 创建新文章
-vim docs/tech/my-new-post.md
+# 1. 创建新文章（内容放在 content/ 下对应分类目录）
+vim content/tech/my-new-post.md
 
 # 2. 本地预览
 npm run dev
 
 # 3. 提交并推送
-git add docs/tech/my-new-post.md
+git add content/tech/my-new-post.md
 git commit -m "post: 新增文章《My New Post》"
 git push origin main
 
-# 4. 等待 GitLab CI 自动完成：
-#    - 构建静态站点
-#    - 部署到 Pages
-#    - 同步到微信公众号草稿箱
+# 4. EdgeOne Git 集成自动完成构建与部署；如需同步公众号：
+npm run sync:wechat
 
 # 5. 登录公众号后台，预览并发布草稿
 ```

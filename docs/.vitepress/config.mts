@@ -21,6 +21,7 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '技术', link: '/tech/' },
       { text: '诗词', link: '/poetry/' },
+      { text: '其他', link: '/others/' },
       { text: '归档', link: '/archive' },
     ],
 
@@ -38,6 +39,14 @@ export default defineConfig({
           text: '诗词作品',
           items: [
             { text: '全部作品', link: '/poetry/' },
+          ]
+        }
+      ],
+      '/others/': [
+        {
+          text: '其他作品',
+          items: [
+            { text: '全部作品', link: '/others/' },
           ]
         }
       ]

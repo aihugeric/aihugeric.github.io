@@ -30,7 +30,7 @@ const WECHAT_APPSECRET = process.env.WECHAT_APPSECRET
 const WECHAT_API_BASE = 'https://api.weixin.qq.com/cgi-bin'
 
 // 要同步的文章目录（相对于 docs/）
-const CONTENT_DIRS = ['tech', 'poetry']
+const CONTENT_DIRS = ['tech', 'poetry', 'others']
 
 // 生成访问外网的博客地址（用于图文"阅读原文"链接）
 const BLOG_BASE_URL = process.env.BLOG_BASE_URL || ''

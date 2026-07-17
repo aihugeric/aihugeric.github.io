@@ -25,3 +25,6 @@ Thumbs.db
 # 日志
 *.log
 npm-debug.log*
+
+# 工具状态目录
+.omo/
